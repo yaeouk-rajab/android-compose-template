@@ -4,6 +4,12 @@ A Jetpack Compose app skeleton: Retrofit + kotlinx.serialization networking, Roo
 Keystore-encrypted prefs, a WorkManager offline-queue drain, connectivity awareness, and a hand-rolled
 composition root. No domain code.
 
+## Screenshots
+
+![Server setup, home with offline queue, and offline banner (Android)](docs/screenshots/overview.png)
+
+_These images are illustrative mockups rendered from this repository's documented screens and API shapes, not captures of a running build. Regenerate or replace them with real captures once the app is running._
+
 ## What is included
 
 - `StarterApplication`: composition root (no DI framework). `MainActivity` hosts `StarterNavHost`.
