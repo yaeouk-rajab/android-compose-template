@@ -134,6 +134,19 @@ dependencyLocking {
     lockAllConfigurations()
 }
 
+// guava before 33.7.2 is flagged by osv-scanner (GHSA-xxph-c9ww-hj94). It arrives through the
+// build tooling (KSP, Android lint) and the unit-test classpaths, and 33.7.2 is a drop-in
+// patch release, so force it everywhere rather than exempting the finding. Regenerate
+// app/gradle.lockfile after changing the version. Drop this once those tools ship a patched
+// guava themselves.
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "com.google.guava" && requested.name == "guava") {
+            useVersion("33.7.2-jre")
+        }
+    }
+}
+
 // Build-tool classpaths (ktlint, Android lint) pin older transitive libraries that osv-scanner
 // flags (logback, commons-lang3, httpclient, BouncyCastle). They never ship in the APK, but the
 // fixed releases are drop-in, so force them rather than exempting the findings. Regenerate
